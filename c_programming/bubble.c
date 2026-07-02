@@ -94,8 +94,8 @@ int main(){
     
     srand(time(NULL));
 
-    int n1 = 50000;
-    int n2 = 100000;
+    int n1 = 10000;
+    int n2 = 30000;
 
     int arr1[n1];
     int arr2[n2];
