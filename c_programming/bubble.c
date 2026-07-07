@@ -65,60 +65,55 @@
 //     return 0;
 // }
 
-#include<stdio.h>
-#include<time.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-void generate_no(int arr1[] , int n){
-
-    for(int i=0;i<n;i++){
-        arr1[i] = rand()%10000;
-    }
+void generate_no(int arr1[], int n) {
+  for (int i = 0; i < n; i++) {
+    arr1[i] = rand() % 10000;
+  }
 }
 
-void bubble_sort(int arr1[] , int n){
-
-    for(int i=0;i<n-1;i++){
-        for(int j=0;j<n-1-i;j++){
-            if(arr1[j]>arr1[j+1]){
-                int temp = arr1[j];
-                arr1[j] = arr1[j+1];
-                arr1[j+1] = temp;
-            }
-        }
+void bubble_sort(int arr1[], int n) {
+  for (int i = 0; i < n - 1; i++) {
+    for (int j = 0; j < n - 1 - i; j++) {
+      if (arr1[j] > arr1[j + 1]) {
+        int temp = arr1[j];
+        arr1[j] = arr1[j + 1];
+        arr1[j + 1] = temp;
+      }
     }
-
+  }
 }
 
-int main(){
-    
-    srand(time(NULL));
+int main() {
+  srand(time(NULL));
 
-    int n1 = 10000;
-    int n2 = 30000;
+  int n1 = 10000;
+  int n2 = 30000;
 
-    int arr1[n1];
-    int arr2[n2];
+  int arr1[n1];
+  int arr2[n2];
 
-    generate_no(arr1 , n1);
-    generate_no(arr2 , n2);
+  generate_no(arr1, n1);
+  generate_no(arr2, n2);
 
-    clock_t start, end;
+  clock_t start, end;
 
-    start = clock();
-    bubble_sort(arr1 , n1);
-    end = clock();
+  start = clock();
+  bubble_sort(arr1, n1);
+  end = clock();
 
-    double a = (double) (end-start)/CLOCKS_PER_SEC;
+  double a = (double)(end - start) / CLOCKS_PER_SEC;
 
-    start = clock();
-    bubble_sort(arr2 , n2);
-    end = clock();
+  start = clock();
+  bubble_sort(arr2, n2);
+  end = clock();
 
-    double b = (end-start)/CLOCKS_PER_SEC;
+  double b = (end - start) / CLOCKS_PER_SEC;
 
-    printf("%f" , b/a);
+  printf("%f", b / a);
 
-
-    return 0;
+  return 0;
 }
