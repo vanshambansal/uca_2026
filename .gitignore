@@ -58,7 +58,12 @@ dkms.conf
 
 main_app
 
-# java files
-../java/.idea/
-../java/out/
-../java/uca_2026.iml
+# IntelliJ
+.idea/
+*.iml
+
+# Compiled output
+out/
+
+# Java compiled files
+*.class
