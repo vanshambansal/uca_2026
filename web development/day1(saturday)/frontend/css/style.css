@@ -1,0 +1,12 @@
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#circle{
+    height: 100px;
+    width: 100px;
+    border-radius:  100%;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    background-color: aquamarine;
+}
