@@ -12,10 +12,9 @@
 
 
 
-// what does new do
+// what does "new" do
 // alocated memory
 // store the reference of memory location in the variable
-// the ref
 
 
 
