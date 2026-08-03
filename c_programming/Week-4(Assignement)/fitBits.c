@@ -40,3 +40,4 @@ int main() {
 
     printf("%d\n", fitsBits(a, b));
 }
+
