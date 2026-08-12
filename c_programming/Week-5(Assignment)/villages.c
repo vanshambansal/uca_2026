@@ -10,116 +10,20 @@
 // Given that k ≥ n, return the minimum possible maximum load on any clinic.
 
 
+// THis ques can also be done using priority queue which i have done in java
+https://github.com/vanshambansal/uca_2026/blob/main/java/week_5_assignment/villages.java
+
 
 #include <stdio.h>
 
-int size = 0;
+int isValid(int population[], int mid, int k, int n) {
+    int a = 0;
 
-int sizeOf () {
-    return size;
-}
-
-int largest (int *heap, int i, int j) {
-    if(heap[i] >= heap[j]) {
-        return i;
+    for(int i = 0; i < n; i++) {
+        a += (population[i] + mid - 1) / mid;
     }
-    else {
-        return j;
-    }
-}
-
-void swap (int *heap, int a, int b) {
-    int temp = heap[a];
-    heap[a] = heap[b];
-    heap[b] = temp;
-}
-
-void swim (int *heap) {
-
-    int n = sizeOf();
-
-    int i = n;
-
-    while(i > 0) {
-        int p1 = (i - 1) / 2;
-
-        if(heap[i] > heap[p1]) {
-            swap(heap, i, p1);
-        } else {
-            break;
-        }
-        i = p1;
-    }
-
-}
-
-void sink (int *heap) {
-
-    int n = sizeOf();
-    int i = 0;
-
-    while (i < n) {
-        int rc = 2*i + 1;
-        int lc = 2*i + 2;
-
-        if((rc < n && lc < n) && (heap[i] < heap[rc] && heap[i] < heap[lc])) {
-            int small = largest(heap, rc, lc);
-            swap(heap, small, i);
-            i = small;
-        } 
-        else if (rc < n && heap[i] < heap[rc]) {
-            swap(heap, rc, i);
-            i = rc;
-        }
-        else if (lc < n && heap[i] < heap[lc]) {
-            swap(heap, lc, i);
-            i = lc;
-        }
-        else {
-            break;
-        }
-
-    }
-
-}
-
-
-int getMax (int * heap) {
-    int n = sizeOf() - 1;
-    if (n >= 0) {
-        return heap[0];
-    } else {
-        return -1;
-    }
-}
-
-void deleteMax(int *heap) {
-
-    int n = sizeOf() - 1;
-    swap(heap, 0 , n);
-
-    size--;
-    sink(heap);
-}
-
-
-void insert (int *heap, int element) {
-
-    int n = sizeOf();
-    heap[n] = element;
-    int p1 = (n - 1) / 2;
-    if (p1 >= 0 && heap[p1] < heap[n]) {
-        swim(heap);
-    }
-    size++;
-}
-
-void print (int * arr) {
-
-    for(int i = 0; i < sizeOf(); i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+    if(a <= k) return 1;
+    return 0;
 }
 
 int main () {
@@ -128,35 +32,30 @@ int main () {
     int k = 5;
     int population[] = {200, 20, 50};
 
-    int heap[100];
-    k -= n;
-
-    for(int i = 0; i < n; i++) {
-        insert(heap, population[i]);
+    int maxElement = 0;
+    for (int i = 0; i < n; i++) {
+        if (population[i] > maxElement) {
+            maxElement = population[i];
+        }
     }
 
-    while (k > 0) {
-        int maxi = getMax(heap);
-        deleteMax(heap);
-        int nextMax = getMax(heap);
-        int a = 1;
-        while(a <= k && nextMax < (double)(maxi / (a + 1))) {
-            a++;
+    int low = 1;
+    int high = maxElement;
+
+    while ( low < high) {
+        int mid = (low + high) / 2;
+
+        if(isValid(population, mid, k, n)) {
+            high = mid;
         }
-        printf("%d \n", a);
-        double divide = maxi /(double) a;
-        printf("%f\n", divide);
-        for(int i = 0; i <=a; i++) {
-            
-            insert(heap, divide);
+        else {
+            low = mid + 1;
         }
-        k -= a;
     }
-    print(heap);
 
-    printf("%d\n", getMax(heap));
-
-
+    printf("%d\n",low);
 
     return 0;
 }
+
+
