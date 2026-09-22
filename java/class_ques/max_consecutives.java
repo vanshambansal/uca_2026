@@ -27,7 +27,7 @@ package class_ques;
 
 import java.util.HashSet;
 
-public class ques1 {
+public class max_consecutives {
 
     public static void main(String[] args) {
 
@@ -57,6 +57,7 @@ public class ques1 {
             maxCount = Math.max(maxCount, count);
 
         }
+        
 
         System.out.println(maxCount);
 
